@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
@@ -12,6 +11,12 @@ const MainRoute = () => {
         <TabNavigation.Navigator
             initialRouteName="Home"
             tabBar={(props) => (<MyTabBar {...props} />)}
+            sceneContainerStyle={{ 
+                backgroundColor: '#fff'
+            }}
+            screenOptions={{
+                headerShown: false
+            }}
         >
             <TabNavigation.Screen
                 name="Fotos"
@@ -28,7 +33,7 @@ const MainRoute = () => {
             />
 
             <TabNavigation.Screen
-                name="Albuns"
+                name="AlbumScreen"
                 component={AlbumScreen}
                 options={{
                     tabBarItemStyle: {
@@ -46,8 +51,17 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
             style={{
                 flexDirection: 'row',
                 paddingVertical: 12,
+                position: 'relative'
             }}
         >
+            <View 
+                style={{ 
+                    width: '100%', 
+                    height: 1, 
+                    position: 'absolute', 
+                    backgroundColor: '#E0E0E6', 
+            }}></View>
+
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label = options.tabBarLabel !== undefined

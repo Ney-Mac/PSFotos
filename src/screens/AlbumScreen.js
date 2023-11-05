@@ -1,9 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native';
+import BackButton from '../components/BackButton';
 
-const AlbumScreen = () => {
+const AlbumScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <BackButton goBack={navigation.goBack} />
             <Text>ALBUM</Text>
         </View>
     );
