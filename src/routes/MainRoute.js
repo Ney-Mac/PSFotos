@@ -51,7 +51,8 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
             style={{
                 flexDirection: 'row',
                 paddingVertical: 12,
-                position: 'relative'
+                position: 'relative',
+                marginTop: 4
             }}
         >
             <View 

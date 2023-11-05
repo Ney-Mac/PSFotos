@@ -1,6 +1,11 @@
-import { View, StyleSheet, FlatList, SafeAreaView, TouchableOpacity } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    FlatList,
+    SafeAreaView,
+} from 'react-native';
 import AlbunButton from '../components/AlbumButton';
-import { Text, IconButton } from 'react-native-paper';
+import Header from '../components/Header';
 
 import img1 from '../assets/mac.jpg';
 import imgIsptec from '../assets/isptec.jpeg';
@@ -13,25 +18,13 @@ const data = [
 ]
 
 const HomeScreen = ({ navigation }) => {
-    const onAlbumPress = () => {
-        navigation.navigate('AlbumScreen');
+    const onAlbumPress = (albumTitle) => {
+        navigation.navigate('AlbumScreen', { albumTitle });
     }
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerContainer}>
-                <Text style={{ fontWeight: 'bold' }} variant='headlineMedium'>Albuns</Text>
-                <TouchableOpacity>
-                    <IconButton
-                        size={24}
-                        iconColor='#fff'
-                        icon='plus'
-                        mode='outlined'
-                        containerColor='#202020'
-                        onPress={() => { console.log('Pressed') }}
-                    />
-                </TouchableOpacity>
-            </View>
+            <Header text="Albuns" showButton={true} />
 
             <SafeAreaView style={{ flex: 1 }}>
                 <FlatList
@@ -41,7 +34,7 @@ const HomeScreen = ({ navigation }) => {
                         <AlbunButton
                             label={item.label}
                             imgUri={item.src}
-                            onPress={onAlbumPress}
+                            onPress={() => { onAlbumPress(item.label) }}
                         />
                     )}
                     keyExtractor={item => item.key}
@@ -57,13 +50,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    headerContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        paddingHorizontal: 16,
-        paddingVertical: 16,
     }
 });
 

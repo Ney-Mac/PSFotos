@@ -1,31 +1,48 @@
-import { 
-    TouchableOpacity, 
-    StyleSheet, 
+import { useEffect, useState } from 'react';
+import {
+    TouchableOpacity,
+    StyleSheet,
     Image,
-    View
+    View,
+    Dimensions
 } from 'react-native';
 import { Text } from "react-native-paper";
 
 export default function AlbunButton({ label, imgUri, onPress }) {
+    const [screenWidth, setScreenWidth] = useState(Dimensions.get('screen').width);
+
+    useEffect(() => {
+        const subscription = Dimensions.addEventListener(
+            'change',
+            ({ screen }) => {
+                setScreenWidth(screen.width);
+            }
+        );
+
+        return () => subscription?.remove();
+    });
+
     return (
         <View style={{ margin: 8 }}>
             <TouchableOpacity style={styles.container} onPress={onPress}>
-                <Image source={imgUri} style={styles.img} />
+                <Image
+                    source={imgUri}
+                    style={{
+                        width: (screenWidth / 2) - 18,
+                        height: (screenWidth / 2),
+                    }}
+                />
             </TouchableOpacity>
 
             <Text variant='labelLarge' style={styles.text}>{label}</Text>
         </View>
-    ) 
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
         borderRadius: 6,
         overflow: 'hidden'
-    },
-    img: {
-        height: 166,
-        width: 182,
     },
     text: {
         width: '100%',
