@@ -9,10 +9,10 @@ export default function BackButton({ goBack }) {
             style={{
                 position: 'absolute',
                 top: getStatusBarHeight() / 10,
-                left: 8
+                right: 8
             }}
         >
-            <IconButton size={32} iconColor="#1C1C1E" icon='arrow-left' />
+            <IconButton size={32} iconColor="#1C1C1E" icon='close' />
         </TouchableOpacity>
     )
 }

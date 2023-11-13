@@ -1,17 +1,17 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Icon from 'react-native-vector-icons/Feather';
 import HomeScreen from "../screens/HomeScreen";
 import AlbumScreen from "../screens/AlbumScreen";
-import Icon from 'react-native-vector-icons/Feather';
 
 const TabNavigation = createBottomTabNavigator();
 
 const MainRoute = () => {
     return (
         <TabNavigation.Navigator
-            initialRouteName="Home"
+            initialRouteName="Fotos"
             tabBar={(props) => (<MyTabBar {...props} />)}
-            sceneContainerStyle={{ 
+            sceneContainerStyle={{
                 backgroundColor: '#fff'
             }}
             screenOptions={{
@@ -55,13 +55,13 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
                 marginTop: 4
             }}
         >
-            <View 
-                style={{ 
-                    width: '100%', 
-                    height: 1, 
-                    position: 'absolute', 
-                    backgroundColor: '#E0E0E6', 
-            }}></View>
+            <View
+                style={{
+                    width: '100%',
+                    height: 1,
+                    position: 'absolute',
+                    backgroundColor: '#E0E0E6',
+                }}></View>
 
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
@@ -70,7 +70,7 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
                     : options.title !== undefined
                         ? options.title
                         : route.name;
-                    //
+                //
                 //
                 const TabBarIcon = options.tabBarIcon;
                 const isFocused = state.index === index;
